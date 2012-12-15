@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title><%= title %></title>
+    <script src="/socket.io/socket.io.js"></script>
+    <%- js('jquery-1.8.3.min') %>
+    <%- js('bootstrap.min') %>
+    <%- js('client') %>
+    <%- css('bootstrap.min') %>
+    <%- css('style') %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="page-header">
+          <h1><%= title %> <small></small></h1>
+        </div>
+
+        <div id="loginBlock" class="row">
+          <div class="span10">
+            <div id="validationError" class="alert alert-error" style="display:none;">
+              <button type="button" class="close" onclick="$('#validationError').slideUp()">x</button>
+              <p>入室するには、ハンドルネームを入力してください。</p>
+            </div>
+            <form class="form-inline" style="text-align: center;">
+              <input type="text" name="name" size="30" placeholder="ハンドルネーム" />
+              <input type="submit" class="btn btn-small btn-primary" value="入室する" />
+            </form>
+          </div>
+        </div>
+
+        <div id="messageBlock" class="row" style="display: none;">
+          <div class="span10">
+            <form class="form-inline" style="text-align: center;">
+              <input type="text" name="message" class="input-xxlarge span8" placeholder="メッセージ" />
+              <input type="submit" class="btn btn-small btn-primary" value="発言する" />
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span10">
+            入室: <span id="onlineUserTotal"></span> <span id="onlineUsers"></span>
+            閲覧: <span id="onlineGuestTotal"></span>
+          </div>
+        </div>
+
+        <div id="messages"></div>
+
+        <div class="row message" id="messageTemplate" style="display: none">
+          <div class="span1" name="">name</div>
+          <div class="span7" message="">message</div>
+          <div class="span2" datetime=""><small class="muted">datetime</small></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
